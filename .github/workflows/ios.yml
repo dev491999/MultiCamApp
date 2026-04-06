@@ -1,0 +1,39 @@
+name: Build iOS App
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode.app
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Project
+        run: xcodegen generate
+
+      - name: Build Archive
+        run: xcodebuild -scheme MultiCamApp -sdk iphoneos -configuration Release archive -archivePath $PWD/build/MultiCamApp.xcarchive CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO
+
+      - name: Export IPA Payload
+        run: |
+          mkdir -p build/Payload
+          cp -r build/MultiCamApp.xcarchive/Products/Applications/MultiCamApp.app build/Payload/
+          cd build
+          zip -r MultiCamApp.ipa Payload
+          
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MultiCamApp-IPA
+          path: build/MultiCamApp.ipa

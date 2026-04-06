@@ -1,0 +1,18 @@
+name: MultiCamApp
+options:
+  bundleIdPrefix: com.example
+targets:
+  MultiCamApp:
+    type: application
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources: [MultiCamApp]
+    info:
+      path: MultiCamApp/Info.plist
+      properties:
+        UILaunchStoryboardName: LaunchScreen
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        NSCameraUsageDescription: We need camera access for dual recording.
+        NSMicrophoneUsageDescription: We need microphone access for recording audio.
+        NSPhotoLibraryUsageDescription: We need photo library access to save your recordings.
