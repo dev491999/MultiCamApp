@@ -30,7 +30,7 @@ jobs:
           mkdir -p build/Payload
           cp -r build/MultiCamApp.xcarchive/Products/Applications/MultiCamApp.app build/Payload/
           cd build
-          zip -r MultiCamApp.ipa Payload
+          zip -ry MultiCamApp.ipa Payload
           
       - name: Upload IPA Artifact
         uses: actions/upload-artifact@v3

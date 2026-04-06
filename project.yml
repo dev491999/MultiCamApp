@@ -10,7 +10,6 @@ targets:
     info:
       path: MultiCamApp/Info.plist
       properties:
-        UILaunchStoryboardName: LaunchScreen
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
         NSCameraUsageDescription: We need camera access for dual recording.
