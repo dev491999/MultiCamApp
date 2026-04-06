@@ -11,7 +11,7 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode.app
@@ -33,7 +33,7 @@ jobs:
           zip -ry MultiCamApp.ipa Payload
           
       - name: Upload IPA Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: MultiCamApp-IPA
           path: build/MultiCamApp.ipa
